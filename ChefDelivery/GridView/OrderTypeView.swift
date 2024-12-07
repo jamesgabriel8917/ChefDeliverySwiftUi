@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct OrderTypeView: View {
+    
+    let orderType: OrderType
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack (spacing: 5){
+            Image(orderType.image)
+                .cornerRadius(20)
+            Text(orderType.name)
+        }
     }
 }
 
 #Preview {
-    OrderTypeView()
+    OrderTypeView(orderType: OrderType(id: 1, name: "Restaurantes", image: "hamburguer"))
+        .previewLayout(.sizeThatFits)
 }
+

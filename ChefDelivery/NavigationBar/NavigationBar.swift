@@ -9,10 +9,26 @@ import SwiftUI
 
 struct NavigationBar: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Spacer()
+            Button("R. Nicanor Sganzerla 556") {
+                
+            }.font(.subheadline)
+                .fontWeight(.semibold)
+            Spacer()
+            Button {
+                
+            } label: {
+                Image(systemName: "bell.badge")
+                    .font(.title3)
+                    .foregroundColor(.red)
+            }
+
+        }
     }
 }
 
 #Preview {
     NavigationBar()
+        .padding()
 }
