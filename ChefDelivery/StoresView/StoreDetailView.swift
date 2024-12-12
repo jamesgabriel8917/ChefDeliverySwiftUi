@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct StoreDetailView: View {
+    let store: StoreType
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Image(store.headerImage)
+                .resizable()
+                .scaledToFill()
+            
+        }
+        .navigationBarTitle("Store Detail")
+        
     }
 }
 
 #Preview {
-    StoreDetailView()
+    StoreDetailView(store: storesMock[0])
 }

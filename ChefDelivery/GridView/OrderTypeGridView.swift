@@ -28,5 +28,5 @@ struct OrderTypeGridView: View {
 
 #Preview {
     OrderTypeGridView()
-        .previewLayout(.sizeThatFits)
+        
 }
