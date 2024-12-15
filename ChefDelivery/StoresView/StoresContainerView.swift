@@ -32,6 +32,7 @@ struct StoresContainerView: View {
                 }.foregroundColor(.black)
         }
             .padding()
+            
     }
 }
 

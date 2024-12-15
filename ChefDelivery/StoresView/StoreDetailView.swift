@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StoreDetailView: View {
     let store: StoreType
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false){
@@ -45,29 +46,49 @@ struct StoreDetailView: View {
                     .padding(.top)
                 
                 ForEach(store.products){ product in
-                    HStack(spacing: 8){
-                        VStack(alignment: .leading, spacing: 8){
-                            Text(product.name)
-                                .bold()
-                            Text(product.description)
-                            
-                            Text("\(product.price)")
+                    NavigationLink{
+                        ProductDetailView(product: product)
+                    } label: {
+                        HStack(spacing: 8){
+                            VStack(alignment: .leading, spacing: 8){
+                                Text(product.name)
+                                    .bold()
+                                Text(product.description)
+                                
+                                Text(product.formattedPrice)
+                            }
+                            Spacer()
+                            Image(product.image)
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(12)
+                                .frame(width: 120, height: 120)
+                                .shadow(radius: 10, x: 6, y: 8)
+                                
                         }
-                        Spacer()
-                        Image(product.image)
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(12)
-                            .frame(width: 120, height: 120)
-                            .shadow(radius: 10, x: 6, y: 8)
-                            
                     }
+                    .foregroundColor(.black)
+                    
                 }
                 
             }
             .navigationBarTitle(store.name)
             .padding(.vertical, 8)
             .padding(.horizontal)
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading){
+                    Button{
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        HStack{
+                            Image(systemName: "cart")
+                            Text("Lojas")
+                        }
+                    }
+                    .foregroundColor(Color("ColorRed"))
+                }
+            }
         }
     }
 }
