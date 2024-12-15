@@ -10,6 +10,9 @@ import SwiftUI
 struct StoreDetailView: View {
     let store: StoreType
     @Environment(\.presentationMode) var presentationMode
+    @State private var selectedProduct: ProductType?
+    
+    
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false){
@@ -46,8 +49,9 @@ struct StoreDetailView: View {
                     .padding(.top)
                 
                 ForEach(store.products){ product in
-                    NavigationLink{
-                        ProductDetailView(product: product)
+                    
+                    Button{
+                        selectedProduct = product
                     } label: {
                         HStack(spacing: 8){
                             VStack(alignment: .leading, spacing: 8){
@@ -66,8 +70,13 @@ struct StoreDetailView: View {
                                 .shadow(radius: 10, x: 6, y: 8)
                                 
                         }
+                        .foregroundColor(.black)
+                        .sheet(item: $selectedProduct){product in
+                            ProductDetailView(product: product)
+                        }
                     }
-                    .foregroundColor(.black)
+                    
+                    
                     
                 }
                 

@@ -11,7 +11,7 @@ struct ProductDetailView: View {
     
     let product: ProductType
     
-    @State var ProductQuantity = 1
+    @State private var ProductQuantity = 1
     
     var body: some View {
         VStack{
@@ -87,6 +87,7 @@ struct ProductDetailView: View {
                 .shadow(color: Color.colorRedDark, radius: 5, x: 0, y: 5)
             
         }
+        .foregroundColor(.black)
     }
 }
 

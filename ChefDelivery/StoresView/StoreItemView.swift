@@ -23,6 +23,14 @@ struct StoreItemView: View {
             Text(store.name)
                 .font(.subheadline)
             Spacer()
+            HStack{
+                ForEach(1...store.stars, id: \.self){star in
+                    Image(systemName: star <= store.stars ? "star.fill" : "star")
+                }
+            }
+            .padding()
+            .foregroundColor(.yellow)
+            
         }
     }
 }
