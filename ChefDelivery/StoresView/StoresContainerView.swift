@@ -28,7 +28,15 @@ struct StoresContainerView: View {
                             .font(.headline)
                         Spacer()
                         
+                        
                         Menu("Filtrar"){
+                            Button{
+                                ratingFilter = 0
+                            } label: {
+                                Text("Limpar filtro")
+                            }
+                            Divider()
+                            
                             ForEach(1...5, id: \.self){ rating in
                                 Button{
                                     ratingFilter = rating
@@ -49,6 +57,11 @@ struct StoresContainerView: View {
                     .padding()
                     if filteredSotres.isEmpty{
                         Text("Nenhum resultado")
+                            .bold()
+                            .font(.title2)
+                            .foregroundColor(Color.colorRed)
+                            .padding(.vertical, 32)
+                            .frame(maxWidth: .infinity)
                     }
                     ForEach(filteredSotres){ mock in
                     NavigationLink {
