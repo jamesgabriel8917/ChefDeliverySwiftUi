@@ -11,10 +11,13 @@ struct StoresContainerView: View {
     
     let title = "Lojas"
     @State private var ratingFilter = 0
+    //distance in kilometer
+    @State private var distanceFilter = 20
     
     var filteredSotres: [StoreType] {
         return storesMock.filter{ store in
-            store.stars >= ratingFilter
+            store.stars >= ratingFilter &&
+            store.distance <= Double(distanceFilter)
         }
     }
     
@@ -26,10 +29,26 @@ struct StoresContainerView: View {
                     HStack{
                         Text(title)
                             .font(.headline)
+                        
                         Spacer()
                         
+                        Menu("Distancia"){
+                            Button{
+                                distanceFilter = 20
+                            } label: {
+                                Text("Limpar filtro")
+                            }
+                            
+                            ForEach(Array(stride(from: 0, to: 21, by: 5)), id: \.self) { i in
+                                Button {
+                                    distanceFilter = i
+                                } label: {
+                                    Text("Até \(i) km")
+                                }
+                            }
+                        }
                         
-                        Menu("Filtrar"){
+                        Menu("Avaliaçao"){
                             Button{
                                 ratingFilter = 0
                             } label: {

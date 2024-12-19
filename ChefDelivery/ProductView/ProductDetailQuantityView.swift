@@ -8,11 +8,46 @@
 import SwiftUI
 
 struct ProductDetailQuantityView: View {
+    
+    @Binding var ProductQuantity: Int
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        //QUantidade
+        VStack(spacing: 15){
+            Text("Quantidade")
+                .bold()
+                .font(.title3)
+            
+            HStack{
+                Button(action: {
+                    if(ProductQuantity>0){
+                        ProductQuantity -= 1
+                    }
+                    
+                }, label: {
+                    Image(systemName: "minus.circle.fill")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(Color.colorRed)
+                })
+                Text("\(ProductQuantity)")
+                
+                Button(action: {
+                    ProductQuantity += 1
+                }, label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(Color.colorRed)
+                        
+                })
+                
+            }
+        }
+
     }
 }
 
 #Preview {
-    ProductDetailQuantityView()
+    ProductDetailQuantityView(ProductQuantity: .constant(1))
 }

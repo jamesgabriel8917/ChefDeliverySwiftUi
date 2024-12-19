@@ -13,7 +13,6 @@ struct ContentView: View {
             VStack (spacing: 0){
                 NavigationBar()
                     .padding(.horizontal, 15)
-                
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 20) {
                         OrderTypeGridView()
@@ -29,3 +28,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+

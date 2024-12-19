@@ -27,6 +27,7 @@ let storesMock: [StoreType] = [
         headerImage: "monstro-burger-header",
         location: "Rua Principal, 123, São Paulo, SP",
         stars: 4,
+        distance: 2,
         products: [
             ProductType(id: 1, name: "Hambúrguer Clássico", description: "Hambúrguer de carne com queijo, alface e tomate", image: "classic_burger", price: 14.99),
             ProductType(id: 2, name: "Hambúrguer com Bacon", description: "Hambúrguer de carne com queijo, bacon crocante, alface e tomate", image: "bacon_burger", price: 16.99),
@@ -42,6 +43,7 @@ let storesMock: [StoreType] = [
         headerImage: "food-court-header",
         location: "Avenida Secundária, 456, São Paulo, SP",
         stars: 4,
+        distance: 5,
         products: [
             ProductType(id: 6, name: "Pizza Margherita", description: "Pizza com molho de tomate, queijo mozzarella e manjericão", image: "margherita_pizza", price: 18.99),
             ProductType(id: 7, name: "Pizza Pepperoni", description: "Pizza com molho de tomate, queijo mozzarella e pepperoni", image: "pepperoni_pizza", price: 19.99),
@@ -57,6 +59,7 @@ let storesMock: [StoreType] = [
         headerImage: "carbron-header",
         location: "Rua Terceira, 789, São Paulo, SP",
         stars: 4,
+        distance: 13,
         products: [
             ProductType(id: 11, name: "Picanha", description: "Picanha grelhada servida com arroz, farofa e vinagrete", image: "picanha", price: 29.99),
             ProductType(id: 12, name: "Costela no bafo", description: "Deliciosa costela assada lentamente, servida com batatas", image: "ribs", price: 26.99),
@@ -72,6 +75,7 @@ let storesMock: [StoreType] = [
         headerImage: "bakery-header",
         location: "Rua Quarta, 159, São Paulo, SP",
         stars: 3,
+        distance: 7,
         products: [
             ProductType(id: 16, name: "Pão Francês", description: "Pão francês fresquinho", image: "french_bread", price: 0.50),
             ProductType(id: 17, name: "Croissant", description: "Croissant folhado", image: "croissant", price: 2.99),
@@ -87,6 +91,7 @@ let storesMock: [StoreType] = [
         headerImage: "acai-panda-header",
         location: "Avenida Quinta, 753, São Paulo, SP",
         stars: 4,
+        distance: 0.2,
         products: [
             ProductType(id: 21, name: "Açaí Pequeno", description: "Açaí na tigela de 300ml com granola e banana", image: "small_acai", price: 8.99),
             ProductType(id: 22, name: "Açaí Médio", description: "Açaí na tigela de 500ml com granola, banana e leite condensado", image: "medium_acai", price: 10.99),

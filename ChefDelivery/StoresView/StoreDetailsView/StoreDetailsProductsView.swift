@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct StoreDetailsProductsView: View {
+    
+    let store: StoreType
+    @State private var selectedProduct: ProductType?
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        Text("Produtos")
+            .font(.title)
+            .bold()
+            .padding(.top)
+        
+        ForEach(store.products){ product in
+            
+            Button{
+                selectedProduct = product
+            } label: {
+                HStack(spacing: 8){
+                    StoreDetailProductItemView(product: product)
+                    
+                }
+                .foregroundColor(.black)
+                .sheet(item: $selectedProduct){product in
+                    ProductDetailView(product: product)
+                }
+            }
+        }    }
 }
 
 #Preview {
-    StoreDetailsProductsView()
+    StoreDetailsProductsView(store: storesMock[0])
 }
