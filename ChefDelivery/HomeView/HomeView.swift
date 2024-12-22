@@ -50,6 +50,10 @@ struct HomeView: View {
                             .padding()
                             .multilineTextAlignment(.center)
                             .offset(y: isAnimating ? 0 : -40)
+                        Text("Confia")
+                            .font(.title3)
+                            .multilineTextAlignment(.center)
+                            .offset(y: isAnimating ? 0 : -40)
                         
                         Image("nice-meme")
                             .resizable()
@@ -130,16 +134,22 @@ struct HomeView: View {
                                 }
                                 
                             })
-                            .onEnded({_ in
+                            .onEnded({ _ in
                                 
-                                
-                                buttonOffSet = 0
+                                if Int(buttonOffSet) > Int((geometry.size.width - 60) / 2) {
+                                    //navegar para a proxima tela
+                                    showSecondScreen = true
+                                }else{
+                                    buttonOffSet = 0
+                                }
                             })
                     )
-                                        
                 }
                 .frame(width: geometry.size.width - 60, height: buttonHeight)
                 .position(x: geometry.size.width / 2, y: geometry.size.height - buttonHeight / 2 - 20) // Posiciona na parte inferior
+            }
+            .fullScreenCover(isPresented: $showSecondScreen){
+                ContentView()
             }
         }
     }
