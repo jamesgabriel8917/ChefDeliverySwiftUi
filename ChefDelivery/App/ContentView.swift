@@ -18,10 +18,31 @@ struct ContentView: View {
                         OrderTypeGridView()
                         CarouselTabView()
                         StoresContainerView()
+                        
+                        
                     }
                 }
             }
         }
+        .onAppear(){
+            fetchData()
+        }
+    }
+    
+    func fetchData(){
+        let url = URL(string: "https://polls.apiblueprint.org/questions")
+        URLSession.shared.dataTask(with: url!) { data, response, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else if let data = data {
+                let decoder = JSONDecoder()
+                print(data)
+            }
+        }.resume()
+        
+        
+        
     }
 }
 

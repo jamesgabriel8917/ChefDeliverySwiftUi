@@ -130,7 +130,6 @@ struct HomeView: View {
                                     if  buttonOffSet <= (Float(geometry.size.width) - (60+80)){
                                         buttonOffSet = GLfloat(gesture.translation.width)
                                     }
-                                    
                                 }
                                 
                             })
