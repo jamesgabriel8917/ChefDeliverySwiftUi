@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    private var service = HomeService()
+    @State private var storesType: [StoreType] = []
+    
+    
     var body: some View {
         NavigationStack {
             VStack (spacing: 0){
@@ -25,28 +30,33 @@ struct ContentView: View {
             }
         }
         .onAppear(){
-            fetchData()
+            Task{
+                await getStores()
+            }
         }
     }
     
-    func fetchData(){
-        let url = URL(string: "https://polls.apiblueprint.org/questions")
-        URLSession.shared.dataTask(with: url!) { data, response, error in
-            if let error = error {
+    
+    func getStores() async {
+        do{
+            let result = try await service.fetchData()
+            
+            switch result{
+            case .success(let stores):
+                self.storesType = stores
+                
+                break
+            case .failure(let error):
                 print(error.localizedDescription)
             }
-            else if let data = data {
-                let decoder = JSONDecoder()
-                print(data)
-            }
-        }.resume()
-        
-        
+        }catch{
+            print(error.localizedDescription)
+        }
         
     }
 }
 
 #Preview {
     ContentView()
+    
 }
-

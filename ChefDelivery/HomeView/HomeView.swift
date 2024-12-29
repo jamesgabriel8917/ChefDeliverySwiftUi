@@ -144,6 +144,7 @@ struct HomeView: View {
                             })
                     )
                 }
+                
                 .frame(width: geometry.size.width - 60, height: buttonHeight)
                 .position(x: geometry.size.width / 2, y: geometry.size.height - buttonHeight / 2 - 20) // Posiciona na parte inferior
             }
