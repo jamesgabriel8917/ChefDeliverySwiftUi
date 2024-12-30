@@ -17,6 +17,7 @@ struct StoreType: Identifiable, Decodable {
     let distance: Double
     let products: [ProductType]
     
+    
     private enum CodingKeys: String, CodingKey {
         case id
         case name

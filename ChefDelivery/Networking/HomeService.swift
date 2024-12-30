@@ -9,52 +9,31 @@ import Foundation
 enum RequestError: Error{
     case invalidURL
     case invalidResponse
+    case decodingError
 }
-
-
 
 struct HomeService{
     
-    func fetchData() async throws -> Result<[StoreType], RequestError> {
+
+    func fetchData() async -> Result<[StoreType], RequestError> {
+        let urlString = "https://private-779d119-aulasswift.apiary-mock.com/home"
         
-        let url = URL(string: "https://private-779d119-aulasswift.apiary-mock.com/home")
-        
-        guard let url else {
-            return .failure(RequestError.invalidURL)
+        guard let url = URL(string: urlString) else {
+            return .failure(.invalidURL)
         }
         
         var request = URLRequest(url: url)
-        
         request.httpMethod = "GET"
         
-        
-        let (Data, _) = try await URLSession.shared.data(for: request)
-        let storesObjects = try JSONDecoder().decode([StoreType].self, from: Data)
-        
-        return .success(storesObjects)
-        
-        
-//        URLSession.shared.dataTask(with: url!) { data, response, error in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                
-//            }
-//            else if let data = data {
-//                do{
-//                    let storeObjects = try JSONDecoder().decode([StoreType].self, from: data)
-//
-//                    
-//                } catch {
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        }.resume()
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let storesObjects = try JSONDecoder().decode([StoreType].self, from: data)
+            return .success(storesObjects)
+        } catch {
+            return .failure(.decodingError)
+        }
     }
-    
 }
-
-
-
 
 
 

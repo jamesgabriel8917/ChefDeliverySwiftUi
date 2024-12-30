@@ -12,19 +12,22 @@ struct ContentView: View {
     private var service = HomeService()
     @State private var storesType: [StoreType] = []
     
+    @State private var isLoading = true
     
     var body: some View {
         NavigationStack {
-            VStack (spacing: 0){
-                NavigationBar()
-                    .padding(.horizontal, 15)
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 20) {
-                        OrderTypeGridView()
-                        CarouselTabView()
-                        StoresContainerView()
-                        
-                        
+            if(isLoading){
+                ProgressView()
+            }else{
+                VStack (spacing: 0){
+                    NavigationBar()
+                        .padding(.horizontal, 15)
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 20) {
+                            OrderTypeGridView()
+                            CarouselTabView()
+                            StoresContainerView(stores: storesType)
+                        }
                     }
                 }
             }
@@ -38,19 +41,17 @@ struct ContentView: View {
     
     
     func getStores() async {
-        do{
-            let result = try await service.fetchData()
-            
-            switch result{
-            case .success(let stores):
-                self.storesType = stores
-                
-                break
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }catch{
-            print(error.localizedDescription)
+
+        let result = await service.fetchData()
+        
+        
+        switch result{
+        case .success(let stores):
+            self.storesType = stores
+            self.isLoading = false
+        case .failure(let error):
+            self.isLoading = false
+            print("Erro ao retornar dados: "+error.localizedDescription)
         }
         
     }
