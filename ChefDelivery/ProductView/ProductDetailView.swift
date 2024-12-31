@@ -26,9 +26,11 @@ struct ProductDetailView: View {
             //Botao de adicionar ao carrinho
             VStack{
                 
-                Button(action: {}){
+                Button(action: {
+                    print("Botao pressionado \(productQuantity)")
+                }){
                     Image(systemName: "cart")
-                    Text("Adicionar ao carrinho")
+                    Text("Enviar pedido")
                 }
             }.foregroundColor(.white)
                 .padding()

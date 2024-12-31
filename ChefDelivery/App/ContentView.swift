@@ -44,7 +44,6 @@ struct ContentView: View {
 
         let result = await service.fetchData()
         
-        
         switch result{
         case .success(let stores):
             self.storesType = stores
@@ -53,11 +52,11 @@ struct ContentView: View {
             self.isLoading = false
             print("Erro ao retornar dados: "+error.localizedDescription)
         }
-        
     }
 }
 
 #Preview {
     ContentView()
-    
+
 }
+
